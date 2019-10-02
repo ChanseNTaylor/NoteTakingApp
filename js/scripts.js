@@ -1,8 +1,23 @@
 `use strict`;
 // note component
-Vue.component(`note`,
+Vue.component('note',
 {
-    template: `<p>fart</p>`
+    template: `
+    <div class="level">
+        <select class="select">
+            <option> DONE </option>
+            <option> Incomplete </option>
+            <option> TODO </option>
+        </select>
+        <a class="delete"></a>
+        <textarea class="textarea" placeholder="text goes here"></textarea>
+    </div>`
+});
+
+// controls the note section
+const noteSection = new Vue(
+{
+    el: '.notes-section'
 });
 
 // controls the new note button
@@ -32,3 +47,7 @@ const time = new Vue(
         })
     }
 });
+
+// TODO
+// add new notes on click
+// make the delete button function properly

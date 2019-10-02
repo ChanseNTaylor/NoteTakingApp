@@ -15,9 +15,11 @@
                 <h1 class="title is-1 is-marginless">Call Notes</h1>
                 <time class="header-time subtitle is-3">{{ time }}</time>
             </header>
-            <main class="section">
+            <main class="container">
                 <button class="note-button button" v-on:click="addNewNote">+ New Note</button>
-                <div class="section"><note></note></div>
+                <div class="section notes-section">
+                    <note></note>
+                </div>
             </main>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -28,5 +30,4 @@
 <!--
     TODO:
         + Make an image for the dark mode toggle
-        + Fill the time element with date and time
 -->
