@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Call Notes</title>
+        <meta name="author" content="Chanse Taylor"/>
+        <meta name="description" content="Note Taker"/>
+        <meta name="keywords" content="notes, note taker"/>
+        <meta name="viewport" content="width=device-width"/>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css"/>
+    </head>
+    <body>
+        <div class="wrapper container">
+            <header class="header has-text-centered">
+                <h1 class="title is-1 is-marginless">Call Notes</h1>
+                <time class="header-time subtitle is-3">{{ time }}</time>
+            </header>
+            <main class="section">
+                <button class="note-button button" v-on:click="addNewNote">+ New Note</button>
+                <div class="section"><note></note></div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="text/javascript" src="js/scripts.js"></script>
+    </body>
+</html>
+
+<!--
+    TODO:
+        + Make an image for the dark mode toggle
+        + Fill the time element with date and time
+-->
