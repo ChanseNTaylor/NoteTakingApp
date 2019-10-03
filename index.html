@@ -10,15 +10,15 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css"/>
     </head>
     <body>
-        <div class="wrapper container">
-            <header class="header has-text-centered">
+        <div class="wrapper container is-fullhd">
+            <header class="has-text-centered has-background-grey-lighter">
                 <h1 class="title is-1 is-marginless">Call Notes</h1>
                 <time class="header-time subtitle is-3">{{ time }}</time>
             </header>
-            <main class="container">
+            <main class="section">
                 <button class="note-button button" v-on:click="addNewNote">+ New Note</button>
                 <div class="section notes-section">
-                    <note></note>
+                    <note v-for="(note, index) in notes" v-bind:key="note.id"></note>
                 </div>
             </main>
         </div>
@@ -27,7 +27,6 @@
     </body>
 </html>
 
-<!--
-    TODO:
+<!-- TODO:
         + Make an image for the dark mode toggle
 -->

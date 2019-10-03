@@ -2,22 +2,30 @@
 // note component
 Vue.component('note',
 {
-    template: `
-    <div class="level">
-        <select class="select">
-            <option> DONE </option>
-            <option> Incomplete </option>
-            <option> TODO </option>
-        </select>
-        <a class="delete"></a>
-        <textarea class="textarea" placeholder="text goes here"></textarea>
+    template:
+    `<div class="message">
+        <div class="message-header">
+            <select class="select">
+                <option> Incomplete </option>
+                <option> Do Later</option>
+                <option> Complete </option>
+            </select>
+            <a class="delete"></a>
+        </div>
+        <section class="message-body">
+            <textarea class="message-body textarea"></textarea>
+        </section>
     </div>`
 });
 
 // controls the note section
 const noteSection = new Vue(
 {
-    el: '.notes-section'
+    el: '.notes-section',
+    data:
+    {
+        notes: []
+    }
 });
 
 // controls the new note button
@@ -28,6 +36,7 @@ const newNoteButton = new Vue(
     {
         addNewNote: function()
         {
+            noteSection.notes.push({ id: noteSection.notes.length + 1 });
         }
     }
 });
