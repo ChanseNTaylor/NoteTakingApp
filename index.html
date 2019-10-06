@@ -7,17 +7,19 @@
         <meta name="description" content="Note Taker"/>
         <meta name="keywords" content="notes, note taker"/>
         <meta name="viewport" content="width=device-width"/>
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"/>
     </head>
     <body>
         <div class="wrapper">
-            <nav class="navbar is-light">
-                <div class="container navbar-item is-block has-text-centered">
+            <nav class="navbar columns is-light is-vcentered">
+                <div class="container column navbar-item is-block has-text-centered is-4 is-offset-4">
                     <p class="title is-3 is-marginless">Call Notes</p>
-                    <time class="header-time subtitle is-5">{{ time }}</time>
+                    <time class="header-time subtitle is-5">{{time}}</time>
                 </div>
-                <div class="navbar-item has-dropdown">
-                    <a class="navbar-link">Settings</a>
+                <div class="navbar-item column is-1 has-dropdown">
+                    <a class="navbar-link">
+                        <img class="image" alt="Settings" src="img/Cog.png">
+                    </a>
                 </div>
             </nav>
             <main class="section">
