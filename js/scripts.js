@@ -3,17 +3,17 @@
 Vue.component('note',
 {
     template:
-    `<div class="message">
+    `<div class="message is-small">
         <div class="message-header">
             <select class="select">
-                <option> Incomplete </option>
-                <option> Do Later</option>
-                <option> Complete </option>
+                <option>Incomplete</option>
+                <option>Do Later</option>
+                <option>Complete</option>
             </select>
             <a class="delete"></a>
         </div>
         <section class="message-body">
-            <textarea class="message-body textarea"></textarea>
+            <textarea rows="1" class="message-body textarea"></textarea>
         </section>
     </div>`
 });
@@ -21,7 +21,7 @@ Vue.component('note',
 // controls the note section
 const noteSection = new Vue(
 {
-    el: '.notes-section',
+    el: `.notes-section`,
     data:
     {
         notes: []
@@ -36,7 +36,7 @@ const newNoteButton = new Vue(
     {
         addNewNote: function()
         {
-            noteSection.notes.push({ id: noteSection.notes.length + 1 });
+            noteSection.notes.unshift({ id: noteSection.notes.length });
         }
     }
 });
@@ -58,5 +58,4 @@ const time = new Vue(
 });
 
 // TODO
-// add new notes on click
-// make the delete button function properly
+// learn how to make the delete buttons function properly
