@@ -1,20 +1,16 @@
 `use strict`;
-// note component
 Vue.component('note',
 {
-    template:
-    `<div class="message is-small">
-        <div class="message-header">
+    template: `<div class="box is-small">
+     <div class="level is-vcentered is-centered">
             <select class="select">
                 <option>Incomplete</option>
                 <option>Do Later</option>
                 <option>Complete</option>
             </select>
-            <a class="delete"></a>
-        </div>
-        <section class="message-body">
-            <textarea rows="1" class="message-body textarea"></textarea>
-        </section>
+            <button class="delete"/>
+      </div>
+      <textarea rows="1" class="textarea"></textarea>
     </div>`
 });
 
