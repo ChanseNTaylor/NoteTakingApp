@@ -78,3 +78,4 @@ const time = new Vue(
 // TODO
 // Change colors of the note blocks based on the select value
 // Date modified needs to update when the select or text area is changed
+// Change the "noteSection" class now that it is no longer a section

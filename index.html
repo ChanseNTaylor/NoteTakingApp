@@ -26,7 +26,7 @@
             <main class="section">
                 <button class="level note-button button is-small" v-on:click="addNewNote">+ New Note</button>
                 <div class="notes-section">
-                    <note v-for="note in notes" v-bind:key="note.id" v-bind:note="note"></note>
+                    <note v-for="note in notes" v-bind:key="note.id" v-bind:note="note"/>
                 </div>
             </main>
         </div>
@@ -37,4 +37,5 @@
 
 <!-- TODO:
         + Remove settings menu placeholder and replace with a dark mode toggle
+        + Add a <p> with information about all of the notes taken so far(?)
 -->
