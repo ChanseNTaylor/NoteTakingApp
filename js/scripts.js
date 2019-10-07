@@ -1,16 +1,33 @@
 `use strict`;
 Vue.component('note',
 {
+    props: [`note`],
+    methods:
+    {
+        removeNote: function()
+        {
+            console.log(this.note.id)
+            for(let aa = 0; aa < noteSection.notes.length; aa++)
+            {
+                if(noteSection.notes[aa].id === this.note.id)
+                {
+                    console.log(noteSection.notes[aa].id, aa);
+                    noteSection.notes.splice(aa, 1);
+                }
+            }
+        }
+    },
     template: `<div class="box is-small">
-     <div class="level is-vcentered is-centered">
+        <div class="level is-vcentered is-centered">
             <select class="select">
                 <option>Incomplete</option>
                 <option>Do Later</option>
                 <option>Complete</option>
             </select>
-            <button class="delete"/>
-      </div>
-      <textarea rows="1" class="textarea"></textarea>
+            <button class="delete" v-on:click="removeNote"/>
+        </div>
+        <textarea rows="1" class="textarea"></textarea>
+        <p class="is-size-7">Last Modified: {{ note.lastModified }}</p>
     </div>`
 });
 
@@ -32,7 +49,12 @@ const newNoteButton = new Vue(
     {
         addNewNote: function()
         {
-            noteSection.notes.unshift({ id: noteSection.notes.length });
+            console.log(`length: ${noteSection.notes.length}`);
+            noteSection.notes.unshift(
+            {
+                id: noteSection.notes.length,
+                lastModified: new Date()
+            });
         }
     }
 });
