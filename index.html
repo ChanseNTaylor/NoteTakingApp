@@ -8,6 +8,7 @@
         <meta name="keywords" content="notes, note taker"/>
         <meta name="viewport" content="width=device-width"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"/>
+        <link rel="stylesheet" href="css/styles.css"/>
     </head>
     <body>
         <div class="wrapper">
@@ -18,13 +19,13 @@
                 </div>
                 <div class="navbar-item column is-1 has-dropdown is-paddingless">
                     <a class="navbar-link">
-                        <img alt="Settings" src="img/Cog.png">
+                        <img alt="Settings" src="img/Cog.png"/>
                     </a>
                 </div>
             </nav>
             <main class="section">
-                <button class="note-button button is-small" v-on:click="addNewNote">+ New Note</button>
-                <div class="section notes-section">
+                <button class="level note-button button is-small" v-on:click="addNewNote">+ New Note</button>
+                <div class="notes-section">
                     <note v-for="note in notes" v-bind:key="note.id" v-bind:note="note"></note>
                 </div>
             </main>

@@ -6,18 +6,19 @@ Vue.component('note',
     {
         removeNote: function()
         {
-            console.log(this.note.id)
             for(let aa = 0; aa < noteSection.notes.length; aa++)
             {
-                if(noteSection.notes[aa].id === this.note.id)
+                if(noteSection.notes[aa].id == this.note.id)
                 {
-                    console.log(noteSection.notes[aa].id, aa);
                     noteSection.notes.splice(aa, 1);
                 }
             }
+        },
+        changeNoteColor: function()
+        {
         }
     },
-    template: `<div class="box is-small">
+    template: `<div class="box is-small is-clearfix">
         <div class="level is-vcentered is-centered">
             <select class="select">
                 <option>Incomplete</option>
@@ -27,11 +28,11 @@ Vue.component('note',
             <button class="delete" v-on:click="removeNote"/>
         </div>
         <textarea rows="1" class="textarea"></textarea>
-        <p class="is-size-7">Last Modified: {{ note.lastModified }}</p>
+        <p class="is-size-7 is-pulled-right has-text-grey-light">Last Modified: {{ note.lastModified }}</p>
     </div>`
 });
 
-// controls the note section
+// controls the note section that contains the "+ New Note" button and notes
 const noteSection = new Vue(
 {
     el: `.notes-section`,
@@ -41,7 +42,7 @@ const noteSection = new Vue(
     }
 });
 
-// controls the new note button
+// controls the "+ New Note" button
 const newNoteButton = new Vue(
 {
     el: `.note-button`,
@@ -49,7 +50,6 @@ const newNoteButton = new Vue(
     {
         addNewNote: function()
         {
-            console.log(`length: ${noteSection.notes.length}`);
             noteSection.notes.unshift(
             {
                 id: noteSection.notes.length,
@@ -59,7 +59,7 @@ const newNoteButton = new Vue(
     }
 });
 
-// controls the subtitle
+// controls the subtitle containing the time
 const time = new Vue(
 {
     el: `.header-time`,
@@ -76,4 +76,5 @@ const time = new Vue(
 });
 
 // TODO
-// learn how to make the delete buttons function properly
+// Change colors of the note blocks based on the select value
+// Date modified needs to update when the select or text area is changed
