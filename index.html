@@ -5,7 +5,7 @@
         <title>Daily Call Notes</title>
         <meta name="author" content="Chanse Taylor"/>
         <meta name="description" content="Note Taker"/>
-        <meta name="keywords" content="notes, note taker"/>
+        <meta name="keywords" content="notes, note taking"/>
         <meta name="viewport" content="width=device-width"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"/>
         <link rel="stylesheet" href="css/styles.css"/>
@@ -24,9 +24,9 @@
                 </div>
             </nav>
             <main class="section">
-                <button class="level note-button button is-small" v-on:click="addNewNote">+ New Note</button>
+                <button class="level note-button button is-small" @click="addNewNote">+ New Note</button>
                 <div class="notes-section">
-                    <note v-for="note in notes" v-bind:key="note.id" v-bind:note="note"/>
+                    <note v-for="note in notes" :key="note.id" :note="note"/>
                 </div>
             </main>
         </div>

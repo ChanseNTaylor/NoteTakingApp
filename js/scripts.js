@@ -1,33 +1,69 @@
 `use strict`;
 Vue.component('note',
 {
+    data()
+    {
+        return {
+            isDoLater: false,
+            isComplete: false,
+            selected: `Incomplete`
+        }
+    },
     props: [`note`],
     methods:
     {
-        removeNote: function()
+        removeNote()
         {
             for(let aa = 0; aa < noteSection.notes.length; aa++)
             {
                 if(noteSection.notes[aa].id == this.note.id)
                 {
                     noteSection.notes.splice(aa, 1);
+                    break;
                 }
             }
         },
-        changeNoteColor: function()
+        changeNoteColor()
         {
+            if(this.selected == `Do Later`)
+            {
+                if(this.isComplete == true)
+                {
+                    this.isComplete = false;
+                }
+
+                this.isDoLater = true;
+            }
+            else if(this.selected == `Complete`)
+            {
+                if(this.isDoLater == true)
+                {
+                    this.isDoLater = false;
+                }
+
+                this.isComplete = true;
+            }
+            else
+            {
+                this.isDoLater = false;
+                this.isComplete = false;
+            }
+        },
+        updateLastModified()
+        {
+            this.note.lastModified = new Date();
         }
     },
-    template: `<div class="box is-small is-clearfix">
+    template: `<div class="box is-small is-clearfix" :class="{ 'has-background-success': isComplete, 'has-background-warning': isDoLater }">
         <div class="level is-vcentered is-centered">
-            <select class="select">
+            <select class="select" @change="changeNoteColor" v-model="selected">
                 <option>Incomplete</option>
                 <option>Do Later</option>
                 <option>Complete</option>
             </select>
-            <button class="delete" v-on:click="removeNote"/>
+            <button class="delete" @click="removeNote"/>
         </div>
-        <textarea rows="1" class="textarea"></textarea>
+        <textarea rows="1" class="textarea" @change="updateLastModified"/>
         <p class="is-size-7 is-pulled-right has-text-grey-light">Last Modified: {{ note.lastModified }}</p>
     </div>`
 });
@@ -48,7 +84,7 @@ const newNoteButton = new Vue(
     el: `.note-button`,
     methods:
     {
-        addNewNote: function()
+        addNewNote()
         {
             noteSection.notes.unshift(
             {
@@ -76,6 +112,5 @@ const time = new Vue(
 });
 
 // TODO
-// Change colors of the note blocks based on the select value
-// Date modified needs to update when the select or text area is changed
 // Change the "noteSection" class now that it is no longer a section
+// Simple animation to make adding and deleting notes less disorienting?
