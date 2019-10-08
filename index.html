@@ -24,8 +24,9 @@
                 </div>
             </nav>
             <main class="section">
+                <p class="container has-text-centered">Info here?</p>
                 <button class="level note-button button is-small" @click="addNewNote">+ New Note</button>
-                <div class="notes-section">
+                <div class="section__note-area">
                     <note v-for="note in notes" :key="note.id" :note="note"/>
                 </div>
             </main>

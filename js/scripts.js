@@ -14,11 +14,11 @@ Vue.component('note',
     {
         removeNote()
         {
-            for(let aa = 0; aa < noteSection.notes.length; aa++)
+            for(let aa = 0; aa < notesArea.notes.length; aa++)
             {
-                if(noteSection.notes[aa].id == this.note.id)
+                if(notesArea.notes[aa].id == this.note.id)
                 {
-                    noteSection.notes.splice(aa, 1);
+                    notesArea.notes.splice(aa, 1);
                     break;
                 }
             }
@@ -69,9 +69,9 @@ Vue.component('note',
 });
 
 // controls the note section that contains the "+ New Note" button and notes
-const noteSection = new Vue(
+const notesArea = new Vue(
 {
-    el: `.notes-section`,
+    el: `.section__note-area`,
     data:
     {
         notes: []
@@ -86,9 +86,9 @@ const newNoteButton = new Vue(
     {
         addNewNote()
         {
-            noteSection.notes.unshift(
+            notesArea.notes.unshift(
             {
-                id: noteSection.notes.length,
+                id: notesArea.notes.length,
                 lastModified: new Date()
             });
         }
@@ -112,5 +112,4 @@ const time = new Vue(
 });
 
 // TODO
-// Change the "noteSection" class now that it is no longer a section
 // Simple animation to make adding and deleting notes less disorienting?
