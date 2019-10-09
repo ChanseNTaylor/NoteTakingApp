@@ -1,12 +1,16 @@
 `use strict`;
+Vue.prototype.$darkMode = false;
+
 Vue.component('note',
 {
     data()
     {
         return {
+            selected: `New`,
+            isNew: true,
             isDoLater: false,
             isComplete: false,
-            selected: `Incomplete`
+            isIncomplete: false
         }
     },
     props: [`note`],
@@ -25,28 +29,26 @@ Vue.component('note',
         },
         changeNoteColor()
         {
+            this.isNew = false;
+            this.isDoLater = false;
+            this.isComplete = false;
+            this.isIncomplete = false;
+
             if(this.selected == `Do Later`)
             {
-                if(this.isComplete == true)
-                {
-                    this.isComplete = false;
-                }
-
                 this.isDoLater = true;
             }
             else if(this.selected == `Complete`)
             {
-                if(this.isDoLater == true)
-                {
-                    this.isDoLater = false;
-                }
-
                 this.isComplete = true;
+            }
+            else if(this.selected == `Incomplete`)
+            {
+                this.isIncomplete = true;
             }
             else
             {
-                this.isDoLater = false;
-                this.isComplete = false;
+                this.isNew = true;
             }
         },
         updateLastModified()
@@ -54,9 +56,10 @@ Vue.component('note',
             this.note.lastModified = new Date();
         }
     },
-    template: `<div class="box is-small is-clearfix" :class="{ 'has-background-success': isComplete, 'has-background-warning': isDoLater }">
+    template: `<div class="box is-small is-clearfix" :class="{ 'has-background-success': isComplete, 'has-background-warning': isDoLater, 'has-background-danger': isIncomplete }">
         <div class="level is-vcentered is-centered">
             <select class="select" @change="changeNoteColor" v-model="selected">
+                <option>New</option>
                 <option>Incomplete</option>
                 <option>Do Later</option>
                 <option>Complete</option>
@@ -64,7 +67,7 @@ Vue.component('note',
             <button class="delete" @click="removeNote"/>
         </div>
         <textarea rows="1" class="textarea" @change="updateLastModified"/>
-        <p class="is-size-7 is-pulled-right has-text-grey-light">Last Modified: {{ note.lastModified }}</p>
+        <p class="is-size-7 is-italic is-pulled-right" :class="{ 'has-text-grey-light': isNew, 'has-text-grey-dark': isDoLater, 'has-text-grey-ter': isComplete, 'has-text-white-ter': isIncomplete }">Last Modified: {{ note.lastModified }}</p>
     </div>`
 });
 
@@ -111,5 +114,22 @@ const time = new Vue(
     }
 });
 
+// controls the dark mode toggle button on the navbar
+const darkModeToggle = new Vue(
+{
+    el: `.navbar__toggle`,
+    methods:
+    {
+        toggleDarkMode()
+        {
+            console.log(this.$darkMode);
+            this.$darkMode = true;
+            console.log(this.$darkMode);
+        }
+    }
+});
+
 // TODO
-// Simple animation to make adding and deleting notes less disorienting?
+// Simple animation to make adding and deleting notes stylish and less disorienting?
+// Complete dark mode
+    // learn localStorage and use it to save darkMode state if possible

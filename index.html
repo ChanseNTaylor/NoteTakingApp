@@ -4,24 +4,22 @@
         <meta charset="utf-8"/>
         <title>Daily Call Notes</title>
         <meta name="author" content="Chanse Taylor"/>
-        <meta name="description" content="Note Taker"/>
         <meta name="keywords" content="notes, note taking"/>
         <meta name="viewport" content="width=device-width"/>
+        <meta name="description" content="A simple note taker created for HSD agents."/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"/>
         <link rel="stylesheet" href="css/styles.css"/>
     </head>
     <body>
-        <div class="wrapper">
+        <div class="wrapper" :class="{ 'has-background-grey-dark': $darkMode }">
             <nav class="navbar columns is-light is-vcentered">
                 <div class="container column navbar-item is-block has-text-centered is-4 is-offset-4">
                     <p class="title is-3 is-marginless">Call Notes</p>
                     <time class="header-time subtitle is-5">{{ time }}</time>
                 </div>
-                <div class="navbar-item column is-1 has-dropdown is-paddingless">
-                    <a class="navbar-link">
-                        <img alt="Settings" src="img/Cog.png"/>
-                    </a>
-                </div>
+                <a class="navbar__toggle navbar-item column is-1" @click="toggleDarkMode">
+                    <img class="image" alt="Dark Mode Toggle" src="img/Cog.png"/>
+                </a>
             </nav>
             <main class="section">
                 <p class="container has-text-centered">Info here?</p>
@@ -31,12 +29,12 @@
                 </div>
             </main>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"/></script>
         <script type="text/javascript" src="js/scripts.js"></script>
     </body>
 </html>
 
 <!-- TODO:
-        + Remove settings menu placeholder and replace with a dark mode toggle
+        + Remove settings menu img and replace with a dark mode toggle
         + Add a <p> with information about all of the notes taken so far(?)
 -->
