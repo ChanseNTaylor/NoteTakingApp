@@ -11,6 +11,27 @@ Vue.component('note',
             isIncomplete: false
         }
     },
+    computed:
+    {
+        classObject()
+        {
+            return {
+                'has-background-warning': this.isDoLater,
+                'has-background-success': this.isComplete,
+                'has-background-danger': this.isIncomplete,
+                'has-background-grey-dark': this.note.isDark && this.isNew
+            }
+        },
+        fallenAtLast()
+        {
+            return {
+                'has-text-grey-light': this.isNew,
+                'has-text-grey-dark': this.isDoLater,
+                'has-text-grey-ter': this.isComplete,
+                'has-text-white-ter': this.isIncomplete
+            }
+        }
+    },
     props: [`note`],
     methods:
     {
@@ -43,7 +64,8 @@ Vue.component('note',
             this.note.lastModified = new Date();
         }
     },
-    template: `<div class="box is-small is-clearfix" :class="{ 'has-background-success': isComplete, 'has-background-warning': isDoLater, 'has-background-danger': isIncomplete, 'has-background-grey-dark' }">
+    template:`
+    <div class="box is-small is-clearfix" :class="classObject">
         <div class="level is-vcentered is-centered">
             <select class="select" @change="changeNoteColor" v-model="selected">
                 <option>New</option>
@@ -54,8 +76,9 @@ Vue.component('note',
             <button class="delete" @click="$emit(\`delete\`, note.id)"/>
         </div>
         <textarea rows="1" class="textarea" @change="updateLastModified"/>
-        <p class="is-size-7 is-italic is-pulled-right" :class="{ 'has-text-grey-light': isNew, 'has-text-grey-dark': isDoLater, 'has-text-grey-ter': isComplete, 'has-text-white-ter': isIncomplete }">Last Modified: {{ note.lastModified }}</p>
-    </div>`
+        <p class="is-size-7 is-italic is-pulled-right" :class="fallenAtLast">Last Modified: {{ note.lastModified }}</p>
+    </div>
+    `
 });
 
 // controls the wrapper class and its many children
@@ -79,11 +102,14 @@ const wrapper = new Vue(
         toggleDarkMode()
         {
             this.darkMode = !this.darkMode;
+
+            this.notes.forEach(note => { note.isDark = !note.isDark });
         },
         addNewNote()
         {
             this.notes.unshift(
             {
+                isDark: this.darkMode,
                 id: this.notes.length,
                 lastModified: new Date()
             });
