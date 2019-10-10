@@ -11,21 +11,21 @@
         <link rel="stylesheet" href="css/styles.css"/>
     </head>
     <body>
-        <div class="wrapper" :class="{ 'has-background-grey-dark': $darkMode }">
-            <nav class="navbar columns is-light is-vcentered">
+        <div class="wrapper" :class="{ 'has-background-grey-dark': darkMode }">
+            <nav class="navbar columns is-light is-vcentered" :class="{ 'has-background-dark': darkMode }">
                 <div class="container column navbar-item is-block has-text-centered is-4 is-offset-4">
-                    <p class="title is-3 is-marginless">Call Notes</p>
-                    <time class="header-time subtitle is-5">{{ time }}</time>
+                    <p class="title is-3 is-marginless" :class="{ 'has-text-grey-light' : darkMode }">Call Notes</p>
+                    <time class="header-time subtitle is-5" :class="{ 'has-text-grey-light' : darkMode }">{{ time }}</time>
                 </div>
                 <a class="navbar__toggle navbar-item column is-1" @click="toggleDarkMode">
                     <img class="image" alt="Dark Mode Toggle" src="img/Cog.png"/>
                 </a>
             </nav>
             <main class="section">
-                <p class="container has-text-centered">Info here?</p>
-                <button class="level note-button button is-small" @click="addNewNote">+ New Note</button>
+                <p>stats go here</p>
+                <button class="level note-button button is-small" @click="addNewNote" :class="{ 'is-dark' : darkMode }">+ New Note</button>
                 <div class="section__note-area">
-                    <note v-for="note in notes" :key="note.id" :note="note"/>
+                    <note v-for="note in notes" :key="note.id" :note="note" @delete="deleteNote"/>
                 </div>
             </main>
         </div>
@@ -36,5 +36,6 @@
 
 <!-- TODO:
         + Remove settings menu img and replace with a dark mode toggle
-        + Add a <p> with information about all of the notes taken so far(?)
+        + Come up with a better style for the dark mode + New Note button
+        + Add a hideable <p> with information about all the notes taken so far
 -->
