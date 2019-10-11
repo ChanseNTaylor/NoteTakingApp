@@ -29,3 +29,7 @@ html, body
 {
     margin-top: 0;
 }
+.desaturate
+{
+    filter: saturate(65%);
+}

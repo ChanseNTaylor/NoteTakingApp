@@ -19,7 +19,8 @@ Vue.component('note',
                 'has-background-warning': this.isDoLater,
                 'has-background-success': this.isComplete,
                 'has-background-danger': this.isIncomplete,
-                'has-background-grey-dark': this.note.isDark && this.isNew
+                'has-background-grey-dark': this.note.isDark && this.isNew,
+                'desaturate': this.note.isDark && this.isDoLater || this.note.isDark && this.isComplete || this.note.isDark && this.isIncomplete
             }
         },
         fallenAtLast()
@@ -58,10 +59,6 @@ Vue.component('note',
             {
                 this.isNew = true;
             }
-        },
-        updateLastModified()
-        {
-            this.note.lastModified = new Date();
         }
     },
     template:`
@@ -75,13 +72,14 @@ Vue.component('note',
             </select>
             <button class="delete" @click="$emit(\`delete\`, note.id)"/>
         </div>
-        <textarea rows="1" class="textarea" @change="updateLastModified"/>
-        <p class="is-size-7 is-italic is-pulled-right" :class="fallenAtLast">Last Modified: {{ note.lastModified }}</p>
+        <textarea rows="1" class="textarea" @change="note.updateModified()"/>
+        <p class="is-size-7 is-italic is-pulled-right" :class="fallenAtLast">
+            Last Modified: {{ note.lastModified }}
+        </p>
     </div>
     `
 });
 
-// controls the wrapper class and its many children
 const wrapper = new Vue(
 {
     el: `.wrapper`,
@@ -111,7 +109,8 @@ const wrapper = new Vue(
             {
                 isDark: this.darkMode,
                 id: this.notes.length,
-                lastModified: new Date()
+                lastModified: new Date(),
+                updateModified() { this.lastModified = new Date(); }
             });
         },
         deleteNote(noteId)
@@ -129,7 +128,7 @@ const wrapper = new Vue(
 });
 
 // TODO
-// Simple animation to make adding and deleting notes stylish and less disorienting?
-// Simple animation for switching to and from dark mode (once everything else is complete)
-// Complete dark mode
-    // learn localStorage and use it to save darkMode state if possible
+// Add animation to make adding & deleting notes stylish and less disorienting
+// Simple animation for toggling dark mode (once everything else is complete)
+// learn localStorage and use it to save darkMode state if possible
+// look up difference between computed & methods.  I may not need methods for the notes
