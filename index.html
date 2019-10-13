@@ -11,19 +11,21 @@
         <link rel="stylesheet" href="css/styles.css"/>
     </head>
     <body>
-        <div class="wrapper" :class="{ 'has-background-grey-dark': darkMode }">
-            <nav class="navbar columns is-light is-vcentered" :class="{ 'has-background-dark': darkMode }">
+        <div class="wrapper" :class="wrapperDarkMode">
+            <nav class="navbar columns is-vcentered is-marginless" :class="navbarDarkMode">
                 <div class="container column navbar-item is-block has-text-centered is-4 is-offset-4">
-                    <p class="title is-3 is-marginless" :class="{ 'has-text-grey-light' : darkMode }">Call Notes</p>
-                    <time class="header-time subtitle is-5" :class="{ 'has-text-grey-light' : darkMode }">{{ time }}</time>
+                    <p class="title is-3 is-marginless" :class="{ 'has-text-grey-light': darkMode }">Call Notes</p>
+                    <time class="header-time subtitle is-5" :class="{ 'has-text-grey-light': darkMode }">{{ time }}</time>
                 </div>
                 <a class="navbar__toggle navbar-item column is-1" @click="toggleDarkMode">
-                    <img class="image" alt="Dark Mode Toggle" src="img/Cog.png"/>
+                    <img class="image" alt="Toggle dark mode button." src="img/Cog.png"/>
                 </a>
             </nav>
             <main class="section">
-                <p>stats go here</p>
-                <button class="level note-button button is-small" @click="addNewNote" :class="{ 'is-dark' : darkMode }">+ New Note</button>
+                <div class="columns is-centered">
+                    <p class="column is-2 has-text-centered">Call Stats</p>
+                </div>
+                <button class="level note-button button is-small" @click="addNewNote" :class="{ 'is-dark': darkMode }">+ New Note</button>
                 <div class="section__note-area">
                     <note v-for="note in notes" :key="note.id" :note="note" @delete="deleteNote"/>
                 </div>

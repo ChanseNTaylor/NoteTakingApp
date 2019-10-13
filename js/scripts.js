@@ -95,10 +95,44 @@ const wrapper = new Vue(
             weekday: "short",
         })
     },
+    computed:
+    {
+        wrapperDarkMode()
+        {
+            return {
+                'transition-to-dark': this.darkMode,
+                'transition-from-dark': !this.darkMode
+            }
+        },
+        navbarDarkMode()
+        {
+            return {
+                'is-light': !this.darkMode,
+                'navbar-transition-to-dark': this.darkMode,
+                'navbar-transition-from-dark': !this.darkMode
+            }
+        }
+    },
+    beforeMount()
+    {
+        if(window.localStorage.getItem(`darkMode`) !== null)
+        {
+            this.darkMode = true;
+        }
+    },
     methods:
     {
         toggleDarkMode()
         {
+            if(window.localStorage.getItem(`darkMode`) === null)
+            {
+                window.localStorage.setItem(`darkMode`, `true`);
+            }
+            else
+            {
+                window.localStorage.removeItem(`darkMode`);
+            }
+
             this.darkMode = !this.darkMode;
 
             this.notes.forEach(note => { note.isDark = !note.isDark });
@@ -129,6 +163,3 @@ const wrapper = new Vue(
 
 // TODO
 // Add animation to make adding & deleting notes stylish and less disorienting
-// Simple animation for toggling dark mode (once everything else is complete)
-// learn localStorage and use it to save darkMode state if possible
-// look up difference between computed & methods.  I may not need methods for the notes
