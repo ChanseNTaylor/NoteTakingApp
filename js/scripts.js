@@ -1,10 +1,10 @@
-`use strict`;
-Vue.component('note',
+"use strict";
+Vue.component("note",
 {
     data()
     {
         return {
-            selected: `New`,
+            selected: "New",
             isNew: true,
             isDoLater: false,
             isComplete: false,
@@ -20,10 +20,10 @@ Vue.component('note',
                 'has-background-success': this.isComplete,
                 'has-background-danger': this.isIncomplete,
                 'has-background-grey-dark': this.note.isDark && this.isNew,
-                'desaturate': this.note.isDark && this.isDoLater || this.note.isDark && this.isComplete || this.note.isDark && this.isIncomplete
+                'desaturate': this.note.isDark && !this.isNew
             }
         },
-        fallenAtLast()
+        setDateModifiedColor()
         {
             return {
                 'has-text-grey-light': this.isNew,
@@ -33,7 +33,7 @@ Vue.component('note',
             }
         }
     },
-    props: [`note`],
+    props: ["note"],
     methods:
     {
         changeNoteColor()
@@ -43,15 +43,15 @@ Vue.component('note',
             this.isComplete = false;
             this.isIncomplete = false;
 
-            if(this.selected == `Do Later`)
+            if(this.selected == "Do Later")
             {
                 this.isDoLater = true;
             }
-            else if(this.selected == `Complete`)
+            else if(this.selected == "Complete")
             {
                 this.isComplete = true;
             }
-            else if(this.selected == `Incomplete`)
+            else if(this.selected == "Incomplete")
             {
                 this.isIncomplete = true;
             }
@@ -70,14 +70,13 @@ Vue.component('note',
                 <option>Do Later</option>
                 <option>Complete</option>
             </select>
-            <button class="delete" @click="$emit(\`delete\`, note.id)"/>
+            <button class="delete" @click="$emit('delete', note.id)"/>
         </div>
-        <textarea rows="1" class="textarea" @change="note.updateModified()"/>
-        <p class="is-size-7 is-italic is-pulled-right" :class="fallenAtLast">
+        <textarea rows="1" class="textarea" @change="note.setDateModified()"/>
+        <p class="is-size-7 is-italic is-pulled-right" :class="setDateModifiedColor">
             Last Modified: {{ note.lastModified }}
         </p>
-    </div>
-    `
+    </div>`
 });
 
 const wrapper = new Vue(
@@ -87,6 +86,7 @@ const wrapper = new Vue(
     {
         notes: [],
         darkMode: false,
+        noteStats: false,
         time: new Date().toLocaleString(`en-US`,
         {
             month: "long",
@@ -94,24 +94,6 @@ const wrapper = new Vue(
             year: "numeric",
             weekday: "short",
         })
-    },
-    computed:
-    {
-        wrapperDarkMode()
-        {
-            return {
-                'transition-to-dark': this.darkMode,
-                'transition-from-dark': !this.darkMode
-            }
-        },
-        navbarDarkMode()
-        {
-            return {
-                'is-light': !this.darkMode,
-                'navbar-transition-to-dark': this.darkMode,
-                'navbar-transition-from-dark': !this.darkMode
-            }
-        }
     },
     beforeMount()
     {
@@ -137,6 +119,10 @@ const wrapper = new Vue(
 
             this.notes.forEach(note => { note.isDark = !note.isDark });
         },
+        toggleNoteStats()
+        {
+            this.noteStats = !this.noteStats;
+        },
         addNewNote()
         {
             this.notes.unshift(
@@ -144,7 +130,7 @@ const wrapper = new Vue(
                 isDark: this.darkMode,
                 id: this.notes.length,
                 lastModified: new Date(),
-                updateModified() { this.lastModified = new Date(); }
+                setDateModified() { this.lastModified = new Date(); }
             });
         },
         deleteNote(noteId)

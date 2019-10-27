@@ -5,27 +5,39 @@
         <title>Daily Call Notes</title>
         <meta name="author" content="Chanse Taylor"/>
         <meta name="keywords" content="notes, note taking"/>
-        <meta name="viewport" content="width=device-width"/>
-        <meta name="description" content="A simple note taker created for HSD agents."/>
+        <meta name="viewport" content="width=device-width, intial-scale=1"/>
+        <meta name="description" content="A note app created for HSD agents."/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"/>
         <link rel="stylesheet" href="css/styles.css"/>
     </head>
     <body>
-        <div class="wrapper" :class="wrapperDarkMode">
-            <nav class="navbar columns is-vcentered is-marginless" :class="navbarDarkMode">
-                <div class="container column navbar-item is-block has-text-centered is-4 is-offset-4">
-                    <p class="title is-3 is-marginless" :class="{ 'has-text-grey-light': darkMode }">Call Notes</p>
-                    <time class="header-time subtitle is-5" :class="{ 'has-text-grey-light': darkMode }">{{ time }}</time>
-                </div>
-                <a class="navbar__toggle navbar-item column is-1" @click="toggleDarkMode">
-                    <img class="image" alt="Toggle dark mode button." src="img/Cog.png"/>
-                </a>
-            </nav>
+        <div class="wrapper mode-transition" :class="{ 'dark': darkMode, 'light': !darkMode }">
+            <header>
+                <nav class="navbar columns mode-transition is-vcentered is-marginless" :class="{ 'is-dark': darkMode }">
+                    <div class="container column navbar-item is-block has-text-centered is-4 is-offset-4">
+                        <p class="title is-3 is-marginless" :class="{ 'has-text-grey-light': darkMode }">Call Notes</p>
+                        <time class="header-time subtitle is-5" :class="{ 'has-text-grey-light': darkMode }">{{ time }}</time>
+                    </div>
+                    <a class="navbar-item column is-1" @click="toggleDarkMode">
+                        <img class="image" alt="Toggle dark mode." src="img/Cog.png"/>
+                    </a>
+                </nav>
+            </header>
             <main class="section">
-                <div class="columns is-centered">
-                    <p class="column is-2 has-text-centered">Call Stats</p>
+                <div class="columns is-centered has-text-centered">
+                    <div class="mode-transition column is-3 light stats__container" :class="{ 'is-dark': darkMode }" >
+                        <div @click="toggleNoteStats">
+                            <span>Call Note Stats</span>
+                            <img class="icon stats__icon" alt="Note stats dropdown arrow." src="https://via.placeholder.com/25"/>
+                        </div>
+                        <p class="call-stats" v-if="noteStats"></p>
+                    </div>
                 </div>
-                <button class="level note-button button is-small" @click="addNewNote" :class="{ 'is-dark': darkMode }">+ New Note</button>
+                <div class="level">
+                    <button class="dark-mode-transition button" @click="addNewNote" :class="{ 'is-dark': darkMode }">
+                        <span>+ New Note</span>
+                    </button>
+                </div>
                 <div class="section__note-area">
                     <note v-for="note in notes" :key="note.id" :note="note" @delete="deleteNote"/>
                 </div>
@@ -37,7 +49,8 @@
 </html>
 
 <!-- TODO:
-        + Remove settings menu img and replace with a dark mode toggle
-        + Come up with a better style for the dark mode + New Note button
-        + Add a hideable <p> with information about all the notes taken so far
+        + Add dropdown arrows to the callnotes stats button
+            + When the div is minimized, show down arrow
+            + When the div is maximized, show up arrow
+        + Remove settings menu img and replace with a dark mode toggle img
 -->
