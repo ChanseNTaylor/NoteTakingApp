@@ -36,7 +36,7 @@ Vue.component("note",
     props: ["note"],
     methods:
     {
-        setNoteColor()
+        setNoteStatus()
         {
             this.isNew = false;
             this.isDoLater = false;
@@ -46,25 +46,29 @@ Vue.component("note",
             if(this.selected == "Do Later")
             {
                 this.isDoLater = true;
+                this.note.status = "Do Later";
             }
             else if(this.selected == "Complete")
             {
                 this.isComplete = true;
+                this.note.status = "Complete";
             }
             else if(this.selected == "Incomplete")
             {
                 this.isIncomplete = true;
+                this.note.status = "Incomplete";
             }
             else
             {
                 this.isNew = true;
+                this.note.status = "New";
             }
-        }
+        },
     },
     template:`
     <div class="box is-small is-clearfix" :class="setNoteColor">
         <div class="level is-vcentered is-centered">
-            <select class="select" @change="setNoteColor" v-model="selected">
+            <select class="select" @change="setNoteStatus" v-model="selected">
                 <option>New</option>
                 <option>Incomplete</option>
                 <option>Do Later</option>
@@ -87,6 +91,22 @@ const wrapper = new Vue(
         notes: [],
         darkMode: false,
         noteStats: false,
+        numOfDoLaterNotes()
+        {
+            return this.notes.filter(note => note.status == "Do Later").length;
+        },
+        numOfCompleteNotes()
+        {
+            return this.notes.filter(note => note.status == "Complete").length;
+        },
+        numOfIncompleteNotes()
+        {
+            return this.notes.filter(note => note.status == "Incomplete").length;
+        },
+        numOfNewNotes()
+        {
+            return this.notes.filter(note => note.status == "New").length;
+        },
         time: new Date().toLocaleString(`en-US`,
         {
             month: "long",
@@ -150,6 +170,7 @@ const wrapper = new Vue(
         {
             this.notes.unshift(
             {
+                status: "New",
                 isDark: this.darkMode,
                 id: this.notes.length,
                 lastModified: new Date(),

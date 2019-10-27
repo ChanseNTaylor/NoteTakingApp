@@ -24,13 +24,34 @@
                 </nav>
             </header>
             <main class="section">
-                <div class="columns is-centered has-text-centered">
-                    <div class="mode-transition column is-3 stats__container" :class="{ 'very-dark': darkMode }" >
+                <div class="is-centered has-text-centered">
+                    <div class="mode-transition stats__container" :class="{ 'very-dark': darkMode }" >
                         <div @click="toggleNoteStats">
                             <span>Call Note Stats</span>
                             <img class="icon stats__icon" alt="Note stats dropdown arrow." src="https://via.placeholder.com/25"/>
                         </div>
-                        <p class="call-stats" v-if="noteStats"></p>
+                        <div class="call-stats columns" v-if="noteStats">
+                            <div class="column">
+                                <p>Notes Total</p>
+                                <p>{{ notes.length }}</p>
+                            </div>
+                            <div class="column">
+                                <p>Complete</p>
+                                <p>{{ numOfCompleteNotes() }}</p>
+                            </div>
+                            <div class="column">
+                                <p>Incomplete</p>
+                                <p>{{ numOfIncompleteNotes() }}</p>
+                            </div>
+                            <div class="column">
+                                <p>Do Later</p>
+                                <p>{{ numOfDoLaterNotes() }}</p>
+                            </div>
+                            <div class="column">
+                                <p>New</p>
+                                <p>{{ numOfNewNotes() }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="level">
