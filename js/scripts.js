@@ -13,7 +13,7 @@ Vue.component("note",
     },
     computed:
     {
-        classObject()
+        setNoteColor()
         {
             return {
                 'has-background-warning': this.isDoLater,
@@ -36,7 +36,7 @@ Vue.component("note",
     props: ["note"],
     methods:
     {
-        changeNoteColor()
+        setNoteColor()
         {
             this.isNew = false;
             this.isDoLater = false;
@@ -62,9 +62,9 @@ Vue.component("note",
         }
     },
     template:`
-    <div class="box is-small is-clearfix" :class="classObject">
+    <div class="box is-small is-clearfix" :class="setNoteColor">
         <div class="level is-vcentered is-centered">
-            <select class="select" @change="changeNoteColor" v-model="selected">
+            <select class="select" @change="setNoteColor" v-model="selected">
                 <option>New</option>
                 <option>Incomplete</option>
                 <option>Do Later</option>
@@ -95,24 +95,47 @@ const wrapper = new Vue(
             weekday: "short",
         })
     },
+    computed:
+    {
+        wrapperColorObj()
+        {
+            return {
+                "dark": this.darkMode,
+                "light": !this.darkMode
+            }
+        },
+        navbarColorObj()
+        {
+            return {
+                "is-dark": this.darkMode,
+                "is-light": !this.darkMode
+            }
+        }
+    },
     beforeMount()
     {
-        if(window.localStorage.getItem(`darkMode`) !== null)
+        if(window.localStorage)
         {
-            this.darkMode = true;
+            if(window.localStorage.getItem(`darkMode`) !== null)
+            {
+                this.darkMode = true;
+            }
         }
     },
     methods:
     {
         toggleDarkMode()
         {
-            if(window.localStorage.getItem(`darkMode`) === null)
+            if(window.localStorage)
             {
-                window.localStorage.setItem(`darkMode`, `true`);
-            }
-            else
-            {
-                window.localStorage.removeItem(`darkMode`);
+                if(window.localStorage.getItem(`darkMode`) === null)
+                {
+                    window.localStorage.setItem(`darkMode`, `true`);
+                }
+                else
+                {
+                    window.localStorage.removeItem(`darkMode`);
+                }
             }
 
             this.darkMode = !this.darkMode;

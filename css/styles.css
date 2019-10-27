@@ -19,6 +19,7 @@
     height: auto;
     padding: 0.25rem;
     border-radius: 0.75rem;
+    background-color: #f5f5f5;
     transition: height 1s linear;
 }
 .stats__icon
@@ -48,6 +49,10 @@
 .dark
 {
     background-color: #4a4a4a
+}
+.very-dark
+{
+    background-color: #363636;
 }
 .mode-transition
 {

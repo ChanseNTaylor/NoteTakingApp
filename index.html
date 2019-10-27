@@ -11,21 +11,21 @@
         <link rel="stylesheet" href="css/styles.css"/>
     </head>
     <body>
-        <div class="wrapper mode-transition" :class="{ 'dark': darkMode, 'light': !darkMode }">
+        <div class="wrapper mode-transition" :class="wrapperColorObj">
             <header>
-                <nav class="navbar columns mode-transition is-vcentered is-marginless" :class="{ 'is-dark': darkMode }">
-                    <div class="container column navbar-item is-block has-text-centered is-4 is-offset-4">
+                <nav class="navbar columns mode-transition is-marginless" :class="navbarColorObj">
+                    <div class="container column is-block has-text-centered is-4 is-offset-4">
                         <p class="title is-3 is-marginless" :class="{ 'has-text-grey-light': darkMode }">Call Notes</p>
                         <time class="header-time subtitle is-5" :class="{ 'has-text-grey-light': darkMode }">{{ time }}</time>
                     </div>
-                    <a class="navbar-item column is-1" @click="toggleDarkMode">
+                    <a class="column is-1" @click="toggleDarkMode">
                         <img class="image" alt="Toggle dark mode." src="img/Cog.png"/>
                     </a>
                 </nav>
             </header>
             <main class="section">
                 <div class="columns is-centered has-text-centered">
-                    <div class="mode-transition column is-3 light stats__container" :class="{ 'is-dark': darkMode }" >
+                    <div class="mode-transition column is-3 stats__container" :class="{ 'very-dark': darkMode }" >
                         <div @click="toggleNoteStats">
                             <span>Call Note Stats</span>
                             <img class="icon stats__icon" alt="Note stats dropdown arrow." src="https://via.placeholder.com/25"/>
