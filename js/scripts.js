@@ -130,6 +130,13 @@ const wrapper = new Vue(
                 "is-dark": this.darkMode,
                 "is-light": !this.darkMode
             }
+        },
+        statsObj()
+        {
+            return {
+                "very-dark": this.darkMode,
+                "stats__container--expanded": this.noteStats
+            }
         }
     },
     beforeMount()

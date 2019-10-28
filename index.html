@@ -11,10 +11,10 @@
         <link rel="stylesheet" href="css/styles.css"/>
     </head>
     <body>
-        <div class="wrapper mode-transition" :class="wrapperColorObj">
-            <header>
-                <nav class="navbar columns mode-transition is-marginless" :class="navbarColorObj">
-                    <div class="container column is-block has-text-centered is-4 is-offset-4">
+        <div class="wrapper transitions" :class="wrapperColorObj">
+            <header class="has-text-centered">
+                <nav class="navbar columns transitions is-marginless" :class="navbarColorObj">
+                    <div class="container column is-block is-4 is-offset-4">
                         <p class="title is-3 is-marginless" :class="{ 'has-text-grey-light': darkMode }">Call Notes</p>
                         <time class="header-time subtitle is-5" :class="{ 'has-text-grey-light': darkMode }">{{ time }}</time>
                     </div>
@@ -24,38 +24,48 @@
                 </nav>
             </header>
             <main class="section">
-                <div class="is-centered has-text-centered">
-                    <div class="mode-transition stats__container" :class="{ 'very-dark': darkMode }" >
+                <div class="is-centered has-text-centered" :class="{ 'has-text-grey-light': darkMode }">
+                    <div class="transitions stats__container" :class="statsObj">
                         <div @click="toggleNoteStats">
-                            <span>Call Note Stats</span>
+                            <span :class="{ 'has-text-grey-light': darkMode }">Call Note Stats</span>
                             <img class="icon stats__icon" alt="Note stats dropdown arrow." src="https://via.placeholder.com/25"/>
                         </div>
-                        <div class="call-stats columns" v-if="noteStats">
+                        <div class="columns" v-if="noteStats">
                             <div class="column">
-                                <p>Notes Total</p>
-                                <p>{{ notes.length }}</p>
-                            </div>
-                            <div class="column">
-                                <p>Complete</p>
-                                <p>{{ numOfCompleteNotes() }}</p>
-                            </div>
-                            <div class="column">
-                                <p>Incomplete</p>
-                                <p>{{ numOfIncompleteNotes() }}</p>
-                            </div>
-                            <div class="column">
-                                <p>Do Later</p>
-                                <p>{{ numOfDoLaterNotes() }}</p>
+                                <p>Total</p>
+                                <p class="stat-value has-text-weight-bold is-size-3">
+                                    {{ notes.length }}
+                                </p>
                             </div>
                             <div class="column">
                                 <p>New</p>
-                                <p>{{ numOfNewNotes() }}</p>
+                                <p class="stat-value has-text-weight-bold is-size-3">
+                                    {{ numOfNewNotes() }}
+                                </p>
+                            </div>
+                            <div class="column">
+                                <p>Incomplete</p>
+                                <p class="stat-value has-text-weight-bold is-size-3">
+                                    {{ numOfIncompleteNotes() }}
+                                </p>
+                            </div>
+                            <div class="column">
+                                <p>Do Later</p>
+                                <p class="stat-value has-text-weight-bold is-size-3">
+                                    {{ numOfDoLaterNotes() }}
+                                </p>
+                            </div>
+                            <div class="column">
+                                <p>Complete</p>
+                                <p class="stat-value has-text-weight-bold is-size-3">
+                                    {{ numOfCompleteNotes() }}
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="level">
-                    <button class="dark-mode-transition button" @click="addNewNote" :class="{ 'is-dark': darkMode }">
+                    <button class="transitions button" @click="addNewNote" :class="{ 'is-dark': darkMode }">
                         <span>+ New Note</span>
                     </button>
                 </div>
