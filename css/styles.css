@@ -12,7 +12,7 @@
 }
 .stats__container
 {
-    max-width: 25vw;
+    max-width: 30vw;
     padding: 0.5rem;
     max-height: 3rem;
     border-radius: 0.75rem;
@@ -58,7 +58,5 @@
 }
 .transitions
 {
-    transition: background-color 0.5s ease-out,
-                max-height 0.5s ease-out,
-                max-width 0.2s ease-out;
+    transition: background-color 0.5s ease-out, max-width 0.2s ease-out;
 }

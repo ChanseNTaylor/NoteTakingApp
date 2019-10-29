@@ -19,7 +19,7 @@
                         <time class="header-time subtitle is-5" :class="{ 'has-text-grey-light': darkMode }">{{ time }}</time>
                     </div>
                     <a class="column is-1" @click="toggleDarkMode">
-                        <img class="image" alt="Toggle dark mode." src="img/Cog.png"/>
+                        <img class="image" alt="Toggle dark mode." src=""/>
                     </a>
                 </nav>
             </header>
@@ -28,15 +28,9 @@
                     <div class="transitions stats__container" :class="statsObj">
                         <div @click="toggleNoteStats">
                             <span :class="{ 'has-text-grey-light': darkMode }">Call Note Stats</span>
-                            <img class="icon stats__icon" alt="Note stats dropdown arrow." src="https://via.placeholder.com/25"/>
+                            <img class="icon stats__icon" alt="Stats dropdown arrow." src=""/>
                         </div>
                         <div class="columns" v-if="noteStats">
-                            <div class="column">
-                                <p>Total</p>
-                                <p class="stat-value has-text-weight-bold is-size-3">
-                                    {{ notes.length }}
-                                </p>
-                            </div>
                             <div class="column">
                                 <p>New</p>
                                 <p class="stat-value has-text-weight-bold is-size-3">
@@ -59,6 +53,12 @@
                                 <p>Complete</p>
                                 <p class="stat-value has-text-weight-bold is-size-3">
                                     {{ numOfCompleteNotes() }}
+                                </p>
+                            </div>
+                            <div class="column">
+                                <p>Total</p>
+                                <p class="stat-value has-text-weight-bold is-size-3">
+                                    {{ notes.length }}
                                 </p>
                             </div>
                         </div>
