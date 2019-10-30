@@ -19,7 +19,7 @@
                         <time class="header-time subtitle is-5" :class="{ 'has-text-grey-light': darkMode }">{{ time }}</time>
                     </div>
                     <a class="column is-1" @click="toggleDarkMode">
-                        <img class="image" alt="Toggle dark mode." src=""/>
+                        <img class="image" alt="Toggle dark mode." src="img/lightbulb.png"/>
                     </a>
                 </nav>
             </header>
@@ -28,7 +28,7 @@
                     <div class="transitions stats__container" :class="statsObj">
                         <div @click="toggleNoteStats">
                             <span :class="{ 'has-text-grey-light': darkMode }">Call Note Stats</span>
-                            <img class="icon stats__icon" alt="Stats dropdown arrow." src=""/>
+                            <img class="icon stats__icon" alt="Stats dropdown arrow." src="img/arrow.png"/>
                         </div>
                         <div class="columns" v-if="noteStats">
                             <div class="column">
