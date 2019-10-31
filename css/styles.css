@@ -28,6 +28,10 @@
 {
     vertical-align: top;
 }
+.stats__icon--rotated
+{
+    transform: rotate(180deg);
+}
 .section
 {
     padding: 1rem 0.75rem;

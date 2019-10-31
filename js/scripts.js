@@ -23,7 +23,7 @@ Vue.component("note",
                 'desaturate': this.note.isDark && !this.isNew
             }
         },
-        setDateModifiedColor()
+        dateModifiedColor()
         {
             return {
                 'has-text-grey-light': this.isNew,
@@ -74,10 +74,10 @@ Vue.component("note",
                 <option>Do Later</option>
                 <option>Complete</option>
             </select>
-            <button class="delete" @click="$emit('delete', note.id)"/>
+            <a class="delete" @click="$emit('delete', note.id)"/>
         </div>
         <textarea rows="1" class="textarea" @change="note.setDateModified()"/>
-        <p class="is-size-7 is-italic is-pulled-right" :class="setDateModifiedColor">
+        <p class="is-size-7 is-italic is-pulled-right" :class="dateModifiedColor">
             Last Modified: {{ note.lastModified }}
         </p>
     </div>`

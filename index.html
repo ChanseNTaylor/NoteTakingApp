@@ -16,7 +16,7 @@
                 <nav class="navbar columns transitions is-marginless" :class="navbarColorObj">
                     <div class="container column is-block is-4 is-offset-4">
                         <p class="title is-3 is-marginless" :class="{ 'has-text-grey-light': darkMode }">Call Notes</p>
-                        <time class="header-time subtitle is-5" :class="{ 'has-text-grey-light': darkMode }">{{ time }}</time>
+                        <time class="subtitle is-5" :class="{ 'has-text-grey-light': darkMode }">{{ time }}</time>
                     </div>
                     <a class="column is-1" @click="toggleDarkMode">
                         <img class="image" alt="Toggle dark mode." src="img/lightbulb.png"/>
@@ -28,7 +28,7 @@
                     <div class="transitions stats__container" :class="statsObj">
                         <div @click="toggleNoteStats">
                             <span :class="{ 'has-text-grey-light': darkMode }">Call Note Stats</span>
-                            <img class="icon stats__icon" alt="Stats dropdown arrow." src="img/arrow.png"/>
+                            <img class="icon stats__icon has-text-centered" :class="{ 'stats__icon--rotated': noteStats }" alt="Dropdown arrow." src="img/arrow.png"/>
                         </div>
                         <div class="columns" v-if="noteStats">
                             <div class="column">
@@ -65,13 +65,11 @@
                     </div>
                 </div>
                 <div class="level">
-                    <button class="transitions button" @click="addNewNote" :class="{ 'is-dark': darkMode }">
-                        <span>+ New Note</span>
-                    </button>
+                    <a class="transitions button" @click="addNewNote" :class="{ 'is-dark': darkMode }">
+                        + New Note
+                    </a>
                 </div>
-                <div class="section__note-area">
-                    <note v-for="note in notes" :key="note.id" :note="note" @delete="deleteNote"/>
-                </div>
+                <note v-for="note in notes" :note="note" @delete="deleteNote"/>
             </main>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"/></script>
@@ -80,8 +78,6 @@
 </html>
 
 <!-- TODO:
-        + Add dropdown arrows to the callnotes stats button
-            + When the div is minimized, show down arrow
-            + When the div is maximized, show up arrow
-        + Remove settings menu img and replace with a dark mode toggle img
+    + refine icons/images
+82
 -->
