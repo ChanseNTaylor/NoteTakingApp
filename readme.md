@@ -1,15 +1,19 @@
 # About/History
 This is a note taking app that I made to make my job slightly easier.  There aren't many programs on our work computers suitable for storing notes from calls.  I quickly whipped up a webpage to save myself from staring into small notepad.  Eventually, I got the idea to recreate it with a few technologies that I wanted to learn more about.  
-## Technologies Used
+### Technologies Used
 HTML, CSS, and JavaScript (The basics)
+
 [Bulma](https://bulma.io/)
+
 [Vue.js](https://vuejs.org/)
+
+
 
 # Getting Started
 1. Clone the repo to the local directory of your choice
 2. Locate the index.html document
 3. Open the HTML document in the web browser of your choice
-## Usage
+### Usage
 The light bulb icon in the top right of the page is for switching between light mode and dark mode.  I tend to prefer dark mode in most applications.  I did my best to make sure none of the colors were too harsh.
 
 The "Call Note Stats" dropdown contains that tells you
