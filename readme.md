@@ -16,12 +16,12 @@ HTML, CSS, and JavaScript (The basics)
 ### Usage
 The light bulb icon in the top right of the page is for switching between light mode and dark mode.  I tend to prefer dark mode in most applications.  I did my best to make sure none of the colors were too harsh.
 
-The "Call Note Stats" dropdown contains that tells you
-..* The number of notes in "New" status
-..* The number of notes in "Incomplete" status
-..* The number of notes in "Do Later" status
-..* The number of notes in "Complete" status
-..* The number of all notes
+The "Call Note Stats" dropdown contains that tells you:
+* The number of notes in "New" status
+* The number of notes in "Incomplete" status
+* The number of notes in "Do Later" status
+* The number of notes in "Complete" status
+* The number of all notes
 
 The "+ New Note" button creates a box that contains a text area for typing important notes, a select dropdown for changing the status of each individual note, and a delete button for removing a particular note entirely.
 
