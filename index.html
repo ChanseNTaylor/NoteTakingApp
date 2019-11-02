@@ -69,7 +69,7 @@
                         + New Note
                     </a>
                 </div>
-                <note v-for="note in notes" :note="note" @delete="deleteNote"/>
+                <note v-for="note in notes" :key="note.id" :note="note" @delete="deleteNote"/>
             </main>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"/></script>
