@@ -1,6 +1,10 @@
+html, body
+{
+    height: 100%;
+}
 .wrapper
 {
-    min-height: 100vh;
+    height: 100%;
 }
 .box
 {
@@ -35,10 +39,6 @@
 .section
 {
     padding: 1rem 0.75rem;
-}
-.navbar-item img
-{
-    max-height: none;
 }
 .columns
 {

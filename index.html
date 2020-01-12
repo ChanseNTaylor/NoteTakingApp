@@ -11,53 +11,51 @@
         <link rel="stylesheet" href="css/styles.css"/>
     </head>
     <body>
-        <div class="wrapper transitions" :class="wrapperColorObj">
-            <header class="has-text-centered">
-                <nav class="navbar columns transitions is-marginless" :class="navbarColorObj">
-                    <div class="container column is-block is-4 is-offset-4">
-                        <p class="title is-3 is-marginless" :class="{ 'has-text-grey-light': darkMode }">Call Notes</p>
-                        <time class="subtitle is-5" :class="{ 'has-text-grey-light': darkMode }">{{ time }}</time>
-                    </div>
-                    <a class="column is-1" @click="toggleDarkMode">
-                        <img class="image" alt="Toggle dark mode." src="img/lightbulb.png"/>
-                    </a>
-                </nav>
+        <div class="wrapper transitions" :class="wrapperObj">
+            <header :class="headerObj">
+                <div class="container column is-block is-4 is-offset-4">
+                    <h1 class="title is-marginless" :class="grayTextObj">Call Notes</h1>
+                    <time class="subtitle is-5" :class="grayTextObj">{{ time }}</time>
+                </div>
+                <a class="column is-narrow" @click="toggleDarkMode">
+                    <img class="image" alt="Toggle dark." src="img/lightbulb.png"/>
+                </a>
             </header>
             <main class="section">
-                <div class="is-centered has-text-centered" :class="{ 'has-text-grey-light': darkMode }">
+                <div class="is-centered has-text-centered" :class="grayTextObj">
                     <div class="transitions stats__container" :class="statsObj">
                         <div @click="toggleNoteStats">
-                            <span :class="{ 'has-text-grey-light': darkMode }">Call Note Stats</span>
-                            <img class="icon stats__icon has-text-centered" :class="{ 'stats__icon--rotated': noteStats }" alt="Dropdown arrow." src="img/arrow.png"/>
+                            <span :class="isDarkObj">Call Note Stats</span>
+                            <img class="icon stats__icon" :class="{ 'stats__icon--rotated': noteStats }" alt="Down arrow." src="img/arrow.png"/>
                         </div>
                         <div class="columns" v-if="noteStats">
                             <div class="column">
                                 <p>New</p>
-                                <p class="stat-value has-text-weight-bold is-size-3">
+                                <p class="has-text-weight-bold is-size-3">
                                     {{ numOfNewNotes() }}
                                 </p>
                             </div>
                             <div class="column">
                                 <p>Incomplete</p>
-                                <p class="stat-value has-text-weight-bold is-size-3">
+                                <p class="has-text-weight-bold is-size-3">
                                     {{ numOfIncompleteNotes() }}
                                 </p>
                             </div>
                             <div class="column">
                                 <p>Do Later</p>
-                                <p class="stat-value has-text-weight-bold is-size-3">
+                                <p class="has-text-weight-bold is-size-3">
                                     {{ numOfDoLaterNotes() }}
                                 </p>
                             </div>
                             <div class="column">
                                 <p>Complete</p>
-                                <p class="stat-value has-text-weight-bold is-size-3">
+                                <p class="has-text-weight-bold is-size-3">
                                     {{ numOfCompleteNotes() }}
                                 </p>
                             </div>
                             <div class="column">
                                 <p>Total</p>
-                                <p class="stat-value has-text-weight-bold is-size-3">
+                                <p class="has-text-weight-bold is-size-3">
                                     {{ notes.length }}
                                 </p>
                             </div>
@@ -65,9 +63,7 @@
                     </div>
                 </div>
                 <div class="level">
-                    <a class="transitions button" @click="addNewNote" :class="{ 'is-dark': darkMode }">
-                        + New Note
-                    </a>
+                    <a class="transitions button" @click="addNewNote" :class="{ 'is-dark': darkMode }">+ New Note</a>
                 </div>
                 <note v-for="note in notes" :key="note.id" :note="note" @delete="deleteNote"/>
             </main>
@@ -79,5 +75,4 @@
 
 <!-- TODO:
     + refine icons/images
-82
 -->

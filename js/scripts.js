@@ -77,7 +77,7 @@ Vue.component("note",
             <a class="delete" @click="$emit('delete', note.id)"/>
         </div>
         <textarea rows="1" class="textarea" @change="note.setDateModified()"/>
-        <p class="is-size-7 is-italic is-pulled-right" :class="dateModifiedColor">
+        <p class="is-size-7 is-italic is-pulled-right transitions" :class="dateModifiedColor">
             Last Modified: {{ note.lastModified }}
         </p>
     </div>`
@@ -117,17 +117,22 @@ const wrapper = new Vue(
     },
     computed:
     {
-        wrapperColorObj()
+        wrapperObj()
         {
             return {
                 "dark": this.darkMode,
                 "light": !this.darkMode
             }
         },
-        navbarColorObj()
+        headerObj()
         {
             return {
+                "navbar": true,
+                "columns": true,
+                "transitions": true,
+                "is-marginless": true,
                 "is-dark": this.darkMode,
+                "has-text-centered": true,
                 "is-light": !this.darkMode
             }
         },
@@ -137,10 +142,19 @@ const wrapper = new Vue(
                 "very-dark": this.darkMode,
                 "stats__container--expanded": this.noteStats
             }
+        },
+        grayTextObj()
+        {
+            return {
+                "has-text-grey-light": this.darkMode
+            }
         }
     },
     beforeMount()
     {
+        // The code below preventa accidental refreshes and data loss.
+        window.onbeforeunload = () => "";
+
         if(window.localStorage)
         {
             if(window.localStorage.getItem(`darkMode`) !== null)
