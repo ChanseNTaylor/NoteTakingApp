@@ -2,7 +2,9 @@
 This is a note taking app made to make my job slightly easier.  There aren't many programs on our work computers suitable for storing notes from calls. I whipped this up to save myself from staring into small notepad windows.  Eventually, I got the idea to recreate it with a few technologies that I wanted to learn a little more about.
 ### Technologies Used
 HTML5, CSS3, and JavaScript (The basics)
+
 [The Bulma CSS framework](https://bulma.io/)
+
 [Vue.js](https://vuejs.org/)
 
 
