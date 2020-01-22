@@ -43,6 +43,11 @@
 {
     margin-top: 0;
 }
+.bulb
+{
+    margin: 0 1rem;
+}
+
 
 /* Transitions */
 .transitions
@@ -57,6 +62,7 @@
 {
     transition: all 0.5s ease-in-out;
 }
+
 
 /* Dark Mode Classes */
 .is-dark

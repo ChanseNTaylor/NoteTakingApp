@@ -91,6 +91,7 @@ const wrapper = new Vue(
         notes: [],
         darkMode: false,
         noteStats: false,
+        localStorage: false,
         numOfNotes(str = "New")
         {
             return this.notes.filter(note => note.status == str).length;
@@ -144,19 +145,25 @@ const wrapper = new Vue(
         // The code below prevents accidental refreshes leading to data loss.
         window.onbeforeunload = () => "";
 
-        if(window.localStorage)
+        try
         {
-            if(window.localStorage.getItem(`darkMode`) !== null)
+            if(window.localStorage)
             {
-                this.darkMode = true;
+                this.localStorage = true;
+
+                if(window.localStorage.getItem(`darkMode`) !== null)
+                {
+                    this.darkMode = true;
+                }
             }
         }
+        catch(err) { console.warn("LocalStorage is not supported."); }
     },
     methods:
     {
         toggleDarkMode()
         {
-            if(window.localStorage)
+            if(this.localStorage)
             {
                 if(window.localStorage.getItem(`darkMode`) === null)
                 {
