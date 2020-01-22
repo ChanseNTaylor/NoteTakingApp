@@ -11,55 +11,55 @@
         <link rel="stylesheet" href="css/styles.css"/>
     </head>
     <body>
-        <div class="wrapper transitions" :class="wrapperObj">
-            <header :class="headerObj">
+        <div class="wrapper transitions has-text-centered" :class="darkWrapper">
+            <header class="columns transitions" :class="darkObj">
                 <div class="container column is-block is-4 is-offset-4">
-                    <h1 class="title is-marginless" :class="grayTextObj">Call Notes</h1>
-                    <time class="subtitle is-5" :class="grayTextObj">{{ time }}</time>
+                    <h1 class="title" :class="darkModeText">Call Notes<h1>
+                    <h3 class="subtitle" :class="darkModeText">{{ time }}</h3>
                 </div>
-                <a class="column is-narrow" @click="toggleDarkMode">
-                    <img class="image" alt="Toggle dark." src="img/lightbulb.png"/>
+                <a class="column is-narrow is-1" @click="toggleDarkMode">
+                    <img class="image" alt="Lightbulb." src="img/bulb.png"/>
                 </a>
             </header>
-            <main class="section">
-                <div class="is-centered has-text-centered" :class="grayTextObj">
-                    <div class="transitions stats__container" :class="statsObj">
-                        <div @click="toggleNoteStats">
-                            <span :class="isDarkObj">Call Note Stats</span>
-                            <img class="icon stats__icon" :class="{ 'stats__icon--rotated': noteStats }" alt="Down arrow." src="img/arrow.png"/>
-                        </div>
-                        <div class="columns" v-if="noteStats">
-                            <div class="column">
-                                <p>New</p>
-                                <p class="has-text-weight-bold is-size-3">
-                                    {{ numOfNewNotes() }}
-                                </p>
+            <main class="section has-text-centered">
+                <div :class="darkModeText">
+                    <div class="transitions stats__container" :class="[darkStats, darkObj, darkModeText]" @click="toggleNoteStats">
+                        <span>Call Note Stats</span>
+                        <img class="icon stats__icon" :class="{ 'stats__icon--rotated': noteStats }" alt="Arrow." src="img/arrow.png"/>
+                        <transition name="ff">
+                            <div class="columns" :class="stats">
+                                <div class="column">
+                                    <p>New</p>
+                                    <p class="has-text-weight-bold is-size-3">
+                                        {{ numOfNotes() }}
+                                    </p>
+                                </div>
+                                <div class="column">
+                                    <p>Incomplete</p>
+                                    <p class="has-text-weight-bold is-size-3">
+                                        {{ numOfNotes("Incomplete") }}
+                                    </p>
+                                </div>
+                                <div class="column">
+                                    <p>Do Later</p>
+                                    <p class="has-text-weight-bold is-size-3">
+                                        {{ numOfNotes("Do Later") }}
+                                    </p>
+                                </div>
+                                <div class="column">
+                                    <p>Complete</p>
+                                    <p class="has-text-weight-bold is-size-3">
+                                        {{ numOfNotes("Complete") }}
+                                    </p>
+                                </div>
+                                <div class="column">
+                                    <p>Total</p>
+                                    <p class="has-text-weight-bold is-size-3">
+                                        {{ notes.length }}
+                                    </p>
+                                </div>
                             </div>
-                            <div class="column">
-                                <p>Incomplete</p>
-                                <p class="has-text-weight-bold is-size-3">
-                                    {{ numOfIncompleteNotes() }}
-                                </p>
-                            </div>
-                            <div class="column">
-                                <p>Do Later</p>
-                                <p class="has-text-weight-bold is-size-3">
-                                    {{ numOfDoLaterNotes() }}
-                                </p>
-                            </div>
-                            <div class="column">
-                                <p>Complete</p>
-                                <p class="has-text-weight-bold is-size-3">
-                                    {{ numOfCompleteNotes() }}
-                                </p>
-                            </div>
-                            <div class="column">
-                                <p>Total</p>
-                                <p class="has-text-weight-bold is-size-3">
-                                    {{ notes.length }}
-                                </p>
-                            </div>
-                        </div>
+                        </transition>
                     </div>
                 </div>
                 <div class="level">
@@ -74,5 +74,5 @@
 </html>
 
 <!-- TODO:
-    + refine icons/images
+    + refine icons
 -->

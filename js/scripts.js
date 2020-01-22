@@ -91,21 +91,9 @@ const wrapper = new Vue(
         notes: [],
         darkMode: false,
         noteStats: false,
-        numOfDoLaterNotes()
+        numOfNotes(str = "New")
         {
-            return this.notes.filter(note => note.status == "Do Later").length;
-        },
-        numOfCompleteNotes()
-        {
-            return this.notes.filter(note => note.status == "Complete").length;
-        },
-        numOfIncompleteNotes()
-        {
-            return this.notes.filter(note => note.status == "Incomplete").length;
-        },
-        numOfNewNotes()
-        {
-            return this.notes.filter(note => note.status == "New").length;
+            return this.notes.filter(note => note.status == str).length;
         },
         time: new Date().toLocaleString(`en-US`,
         {
@@ -117,42 +105,43 @@ const wrapper = new Vue(
     },
     computed:
     {
-        wrapperObj()
+        darkWrapper()
         {
             return {
-                "dark": this.darkMode,
-                "light": !this.darkMode
-            }
-        },
-        headerObj()
-        {
-            return {
-                "navbar": true,
-                "columns": true,
-                "transitions": true,
-                "is-marginless": true,
                 "is-dark": this.darkMode,
-                "has-text-centered": true,
                 "is-light": !this.darkMode
             }
         },
-        statsObj()
+        darkStats()
         {
             return {
                 "very-dark": this.darkMode,
                 "stats__container--expanded": this.noteStats
             }
         },
-        grayTextObj()
+        darkObj()
         {
             return {
-                "has-text-grey-light": this.darkMode
+                "light": !this.darkMode,
+                "very-dark": this.darkMode
+            }
+        },
+        darkModeText()
+        {
+            return {
+                "has-text-grey-light": this.darkMode,
+            }
+        },
+        stats()
+        {
+            return {
+                "is-hidden": !this.noteStats
             }
         }
     },
     beforeMount()
     {
-        // The code below preventa accidental refreshes and data loss.
+        // The code below prevents accidental refreshes leading to data loss.
         window.onbeforeunload = () => "";
 
         if(window.localStorage)
