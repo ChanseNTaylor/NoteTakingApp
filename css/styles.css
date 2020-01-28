@@ -47,6 +47,10 @@
 {
     margin: 0 1rem;
 }
+.textarea
+{
+    height: auto;
+}
 
 
 /* Transitions */

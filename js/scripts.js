@@ -65,8 +65,8 @@ Vue.component("note",
             }
         },
     },
-    template:`
-    <div class="box is-small is-clearfix" :class="setNoteColor">
+    template: `
+    <div class="box transitions" :class="setNoteColor">
         <div class="level is-vcentered is-centered">
             <select class="select" @change="setNoteStatus" v-model="selected">
                 <option>New</option>
@@ -76,8 +76,8 @@ Vue.component("note",
             </select>
             <a class="delete" @click="$emit('delete', note.id)"/>
         </div>
-        <textarea rows="1" class="textarea" @change="note.setDateModified()"/>
-        <p class="is-size-7 is-italic is-pulled-right transitions" :class="dateModifiedColor">
+        <div class="textarea has-text-left" contenteditable="true" @change="note.setDateModified()"/>
+        <p class="is-size-7 is-italic has-text-right transitions" :class="dateModifiedColor">
             Last Modified: {{ note.lastModified }}
         </p>
     </div>`
