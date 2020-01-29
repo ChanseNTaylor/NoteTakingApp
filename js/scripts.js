@@ -76,7 +76,7 @@ Vue.component("note",
             </select>
             <a class="delete" @click="$emit('delete', note.id)"/>
         </div>
-        <div class="textarea has-text-left" contenteditable="true" @change="note.setDateModified()"/>
+        <div class="textarea has-text-left" contenteditable @change="note.setDateModified()"/>
         <p class="is-size-7 is-italic has-text-right transitions" :class="dateModifiedColor">
             Last Modified: {{ note.lastModified }}
         </p>
@@ -124,7 +124,8 @@ const wrapper = new Vue(
         {
             return {
                 "light": !this.darkMode,
-                "very-dark": this.darkMode
+                "very-dark": this.darkMode,
+                "has-text-grey-light": this.darkMode
             }
         },
         darkModeText()
@@ -157,7 +158,10 @@ const wrapper = new Vue(
                 }
             }
         }
-        catch(err) { console.warn("LocalStorage is not supported."); }
+        catch(err)
+        {
+            console.warn("LocalStorage is not supported.");
+        }
     },
     methods:
     {

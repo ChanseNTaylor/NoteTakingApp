@@ -14,53 +14,51 @@
         <div class="wrapper transitions has-text-centered" :class="darkWrapper">
             <header class="columns transitions" :class="darkObj">
                 <div class="container column is-block is-4 is-offset-4">
-                    <h1 class="title" :class="darkModeText">Call Notes<h1>
-                    <h3 class="subtitle" :class="darkModeText">{{ time }}</h3>
+                    <h1 class="title transitions" :class="darkObj">Call Notes<h1>
+                    <h3 class="subtitle transitions" :class="darkObj">{{ time }}</h3>
                 </div>
                 <a class="column is-narrow bulb" @click="toggleDarkMode">
                     <img class="image" alt="Lightbulb." src="img/bulb.png"/>
                 </a>
             </header>
             <main class="section has-text-centered">
-                <div :class="darkModeText">
-                    <div class="transitions stats__container" :class="[darkStats, darkObj, darkModeText]" @click="toggleNoteStats">
-                        <span>Call Note Stats</span>
-                        <img class="icon stats__icon" :class="{ 'stats__icon--rotated': noteStats }" alt="Arrow." src="img/arrow.png"/>
-                        <transition name="ff">
-                            <div class="columns" :class="stats">
-                                <div class="column">
-                                    <p>New</p>
-                                    <p class="has-text-weight-bold is-size-3">
-                                        {{ numOfNotes() }}
-                                    </p>
-                                </div>
-                                <div class="column">
-                                    <p>Incomplete</p>
-                                    <p class="has-text-weight-bold is-size-3">
-                                        {{ numOfNotes("Incomplete") }}
-                                    </p>
-                                </div>
-                                <div class="column">
-                                    <p>Do Later</p>
-                                    <p class="has-text-weight-bold is-size-3">
-                                        {{ numOfNotes("Do Later") }}
-                                    </p>
-                                </div>
-                                <div class="column">
-                                    <p>Complete</p>
-                                    <p class="has-text-weight-bold is-size-3">
-                                        {{ numOfNotes("Complete") }}
-                                    </p>
-                                </div>
-                                <div class="column">
-                                    <p>Total</p>
-                                    <p class="has-text-weight-bold is-size-3">
-                                        {{ notes.length }}
-                                    </p>
-                                </div>
+                <div class="transitions stats__container" :class="[darkStats, darkObj]" @click="toggleNoteStats">
+                    <span>Call Note Stats</span>
+                    <img class="icon stats__icon" :class="{ 'stats__icon--rotated': noteStats }" alt="Arrow." src="img/arrow.png"/>
+                    <transition name="ff">
+                        <div class="columns" :class="stats">
+                            <div class="column">
+                                <p>New</p>
+                                <p class="has-text-weight-bold is-size-3">
+                                    {{ numOfNotes() }}
+                                </p>
                             </div>
-                        </transition>
-                    </div>
+                            <div class="column">
+                                <p>Incomplete</p>
+                                <p class="has-text-weight-bold is-size-3">
+                                    {{ numOfNotes("Incomplete") }}
+                                </p>
+                            </div>
+                            <div class="column">
+                                <p>Do Later</p>
+                                <p class="has-text-weight-bold is-size-3">
+                                    {{ numOfNotes("Do Later") }}
+                                </p>
+                            </div>
+                            <div class="column">
+                                <p>Complete</p>
+                                <p class="has-text-weight-bold is-size-3">
+                                    {{ numOfNotes("Complete") }}
+                                </p>
+                            </div>
+                            <div class="column">
+                                <p>Total</p>
+                                <p class="has-text-weight-bold is-size-3">
+                                    {{ notes.length }}
+                                </p>
+                            </div>
+                        </div>
+                    </transition>
                 </div>
                 <div class="level">
                     <a class="transitions button" @click="addNewNote" :class="{ 'is-dark': darkMode }">+ New Note</a>
